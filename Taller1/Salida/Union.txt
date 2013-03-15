@@ -1,5 +1,0 @@
-Archivo1 Archivo 2 Archivo 3  archivo 4Archivo1Once you have the file, write a series of grep statements that do the following:
-•	Print all lines that contain a phone number with an extension (the letter x or X followed by four digits).
-•	Print all lines that begin with three digits followed by a blank. Your answer must use the \{ and \} repetition specifier.
-•	Print all lines that contain a date. Hint: this is a very simple 
-archivo Archivo 3  archivo 4
