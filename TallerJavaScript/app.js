@@ -12,8 +12,7 @@ function loadclientes(clientes){
 	};
 	
 }
-
-function addClient(clientToAdd){
+function capturarCliente(clientToAdd){
 	var id= prompt("Ingrese Id");
 	clientToAdd.id= id;
 	var nombre= prompt("Ingrese Nombre");
@@ -25,6 +24,22 @@ function addClient(clientToAdd){
 	var desc= prompt("Ingrese Descripcion");
 	clientToAdd.descripcion= desc;
 	console.log(clientToAdd);
+
+}
+
+function addClient(clientToAdd){
+	if(clientToAdd.nombre==""){
+		alert("El Nombre es Requerido");
+	}
+	var re=clientToAdd.id;
+	var prub = new RegExp("^[0-9]*");
+	if(prub.test(re)){
+		alert("El id tiene solo numeros");
+	}
+	else{
+		alert("El id debe ser numerico");
+	}
+
 	clientes.push(clientToAdd);
 	console.log(clientes);
 }
@@ -32,7 +47,7 @@ function addClient(clientToAdd){
 
 function  printClients(clientes){
 
-	for (var i = 0; i < 50; i++) {
+	for (var i = 0; i < clientes.length; i++) {
 		console.log("Cliente: "+clientes[i].nombre);
 		console.log("Id: "+clientes[i].id);
 		console.log("Email: "+clientes[i].email);
@@ -44,6 +59,7 @@ function  printClients(clientes){
 }
 var clientes= new Array();
 var clientToAdd= new Object();
-addClient(clientToAdd);
 loadclientes(clientes);
 printClients(clientes);
+capturarCliente(clientToAdd);
+addClient(clientToAdd);
