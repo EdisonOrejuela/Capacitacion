@@ -28,16 +28,24 @@ function capturarCliente(clientToAdd){
 }
 
 function addClient(clientToAdd){
+	var prub = new RegExp("^[0-9]*$");
+	if(prub.test(clientToAdd.id)==false){
+
+			alert("El id debe ser numerico");
+	}
+
 	if(clientToAdd.nombre==""){
 		alert("El Nombre es Requerido");
 	}
-	var re=clientToAdd.id;
-	var prub = new RegExp("^[0-9]*");
-	if(prub.test(re)){
-		alert("El id tiene solo numeros");
+
+	var prub1= new RegExp("^[a-z0-9]*[@][a-z0-9]*[.][c][o][m]")
+	if(prub1.test(clientToAdd.email)==false){
+		alert("Email Invalido: Use formato --------@------.com");
 	}
-	else{
-		alert("El id debe ser numerico");
+
+	var prub2= new RegExp("^[0-9]\{9\}$")
+	if(prub2.test(clientToAdd.telefono)==false){
+		alert("Numero Telefonico invalido: Debe ser de 9 digitos")
 	}
 
 	clientes.push(clientToAdd);
