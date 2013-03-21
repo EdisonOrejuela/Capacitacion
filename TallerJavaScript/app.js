@@ -1,17 +1,13 @@
-function loadclientes(clientes){
-	
-	for (var i =0 ; i<50; i++) {
-		var cliente= new Object();
-		clientes.push(cliente);
-		cliente.id=i+1;
-		cliente.nombre="Cliente"+(i+1);
-		cliente.email="cliente"+(i+1)+"@mail.com";
-		cliente.telefono="123-456-789";
-		cliente.descripcion="ninguna";
+function loadclientes(listaClientes, callbackExito){
+	$.ajax({
+		url:"listaClientes.json"
+	}).done(function(data){
+		var lista= JSON.parse(data);
+		callbackExito(lista);
+	});
 
-	};
-	
 }
+
 function capturarCliente(clientToAdd){
 	var id= prompt("Ingrese Id");
 	clientToAdd.id= id;
@@ -26,26 +22,39 @@ function capturarCliente(clientToAdd){
 	console.log(clientToAdd);
 
 }
+function callbackPrueba(lista){
+console.log("Datos Recibidos");
+}
+
+function callbackPrueba2(items){
+console.log("Tamaño: "+items.length);
+}
+
+function callbackPrueba3(listacompleta){
+console.log("La lista es: ");
+console.log(listacompleta);
+}
+	
 
 function addClient(clientToAdd){
 	var prub = new RegExp("^[0-9]*$");
 	if(prub.test(clientToAdd.id)==false){
 
-			alert("El id debe ser numerico");
+			throw new Error("El id debe ser numerico");
 	}
 
 	if(clientToAdd.nombre==""){
-		alert("El Nombre es Requerido");
+		throw new Error("El Nombre es Requerido");
 	}
 
 	var prub1= new RegExp("^[a-z0-9]*[@][a-z0-9]*[.][c][o][m]")
 	if(prub1.test(clientToAdd.email)==false){
-		alert("Email Invalido: Use formato --------@------.com");
+		throw new Error("Email Invalido: Use formato --------@------.com");
 	}
 
 	var prub2= new RegExp("^[0-9]\{9\}$")
 	if(prub2.test(clientToAdd.telefono)==false){
-		alert("Numero Telefonico invalido: Debe ser de 9 digitos")
+		throw new Error("Numero Telefonico invalido: Debe ser de 9 digitos")
 	}
 
 	clientes.push(clientToAdd);
@@ -65,9 +74,14 @@ function  printClients(clientes){
 	};
 
 }
-var clientes= new Array();
-var clientToAdd= new Object();
-loadclientes(clientes);
-printClients(clientes);
-capturarCliente(clientToAdd);
-addClient(clientToAdd);
+
+$(document).ready(function() {
+  var lista= new Array();
+  loadclientes(lista, function(lista){
+  	alert("lista Recibida "+lista.length);
+  });
+  
+
+});
+
+
