@@ -77,11 +77,15 @@ function  printClients(clientes){
 
 $(document).ready(function() {
   var lista= new Array();
+  console.log("Cargando...");
   loadclientes(lista, function(lista){
-  	alert("lista Recibida "+lista.length);
+  	printClients(lista);
+  	console.log("Finalizado");
   });
-  
+  // loadclientes(lista,
+  //  function(items){
+  //  alert("  ");
+  // });
+
 
 });
-
-
