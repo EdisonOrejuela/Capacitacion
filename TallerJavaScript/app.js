@@ -40,26 +40,35 @@ console.log(listacompleta);
 function addClient(clientToAdd){
 	var prub = new RegExp("^[0-9]*$");
 	if(prub.test(clientToAdd.id)==false){
-
+			alert("El id debe ser numerico");
 			throw new Error("El id debe ser numerico");
+			
 	}
 
 	if(clientToAdd.nombre==""){
+		alert("El Nombre es Requerido");
 		throw new Error("El Nombre es Requerido");
+		
 	}
 
 	var prub1= new RegExp("^[a-z0-9]*[@][a-z0-9]*[.][c][o][m]")
 	if(prub1.test(clientToAdd.email)==false){
+		alert("Email Invalido: Use formato --------@------.com");
 		throw new Error("Email Invalido: Use formato --------@------.com");
+		
 	}
 
 	var prub2= new RegExp("^[0-9]\{9\}$")
 	if(prub2.test(clientToAdd.telefono)==false){
+		alert("Numero Telefonico invalido: Debe ser de 9 digitos");
 		throw new Error("Numero Telefonico invalido: Debe ser de 9 digitos")
+		
 	}
 
-	clientes.push(clientToAdd);
-	console.log(clientes);
+	
+	listaClientes.push(clientToAdd);
+	//console.log(clientes);
+	mostrarClientes(listaClientes);
 }
 
 
@@ -123,14 +132,36 @@ function mostrarDetalles(idCliente, lista){
 
 }
 }
+function capturarDatos(clientToAdd){
+	
+	$("#boton1").click(function(){
+		var id= document.getElementById("campo1").value;
+		var nombre= document.getElementById("campo2").value;
+		var email= document.getElementById("campo3").value;
+		var telefono= document.getElementById("campo4").value;
+		var descripcion= document.getElementById("campo5").value;
+		alert(id+"    "+nombre+"   "+email+"   "+telefono+"   "+descripcion);
+		clientToAdd.id=id;
+		clientToAdd.nombre=nombre;
+		clientToAdd.email=email;
+		clientToAdd.telefono=telefono;
+		clientToAdd.descripcion=descripcion;
+		addClient(clientToAdd);
+		
+		//console.log(listaClientes);
+
+	});
+}
 
 $(document).ready(function() {
   console.log("Cargando...");
   loadclientes(function(lista){
   	listaClientes=lista;
+  	var clientToAdd= new Object();
   	printClients(lista);
   	mostrarClientes(lista);
   	configurarEventos();
+  	capturarDatos(clientToAdd);
   	//mostrarDetalles(1, lista);
   	console.log("Finalizado");
   });
