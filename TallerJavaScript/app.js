@@ -1,4 +1,5 @@
-function loadclientes(listaClientes, callbackExito){
+var listaClientes= new Array();
+function loadclientes(callbackExito){
 	$.ajax({
 		url:"listaClientes.json"
 	}).done(function(data){
@@ -74,18 +75,68 @@ function  printClients(clientes){
 	};
 
 }
+function mostrarClientes(listaClientes){
+        var padre= $(".panellista");
+        for (var i = 0; i < listaClientes.length; i++) {
+        	var cliente=$("<div>");
+        	jQuery.data(cliente[0], "idCliente", listaClientes[i].id);
+        	//console.log(listaClientes[i].id);
+           	var correo=$("<div>");
+           	var nombre=$("<div>");
+          	nombre.text(listaClientes[i].nombre);
+          	correo.text(listaClientes[i].email);
+          	cliente.addClass("itemCliente");
+           	padre.append(cliente);
+           	cliente.append(nombre);
+           	cliente.append(correo);
+
+
+
+        };
+
+
+}
+function configurarEventos(){
+	$(".itemCliente").click(function(){
+           		//var idCliente= jQuery.data(this, "id");
+           		var idCliente=jQuery.data(this, "idCliente");
+           		console.log("Click en id: "+idCliente);
+           		mostrarDetalles(idCliente, listaClientes);
+           	});
+
+}
+function mostrarDetalles(idCliente, lista){
+      var detalles=$(".paneldetalles");
+      var id=$(".id");
+      var nombre=$(".nombre");
+      var email=$(".email");
+      var telefono=$(".telefono");
+      var descripcion=$(".descripcion");
+      for (var i = 0; i < lista.length; i++) {
+      	if(idCliente==lista[i].id){
+      		id.text(lista[i].id);
+      		nombre.text(lista[i].nombre);
+      		email.text(lista[i].email);
+      		telefono.text(lista[i].telefono);
+      		descripcion.text(lista[i].descripcion);
+      	}
+
+}
+}
 
 $(document).ready(function() {
-  var lista= new Array();
   console.log("Cargando...");
-  loadclientes(lista, function(lista){
+  loadclientes(function(lista){
+  	listaClientes=lista;
   	printClients(lista);
+  	mostrarClientes(lista);
+  	configurarEventos();
+  	//mostrarDetalles(1, lista);
   	console.log("Finalizado");
   });
   // loadclientes(lista,
   //  function(items){
   //  alert("  ");
   // });
-
 
 });

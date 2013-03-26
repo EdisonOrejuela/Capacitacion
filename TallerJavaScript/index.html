@@ -6,14 +6,42 @@
 	<link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-	<div class="panelcreacion">
-		<!-- Captura de datos para crear nuevo cliente -->
-	</div>
-	<div class="panellista">
-		<!-- Lista de clientes existentes -->
-	</div>
 	<script src="jquery-1.9.1.js"></script>
 	<script src="app.js"></script>
-
+	<table style="text-align: top">
+		<tr>
+			<th scope="col">Crear Cliente</th>
+			<th scope="col">Lista de Clientes</th>
+			<th scope="col">Detalles del Cliente</th>
+		</tr>
+		<tr>
+			<td>
+				<div class="panelcreacion">
+					<div>Id: <input type="text" name="id"/></div>
+					<div>Nombre: <input type="text" name="nombre"/></div>
+					<div>Email: <input type="text" name="email"/></div>
+					<div>Telefono: <input type="text" name="telefono"/></div>
+					<div>Descrpcion: <input type="text" name="descrpcion"/></div>
+					<div><input type="Button" name="Agregar" value="Agregar"/></div>
+		<!-- Captura de datos para crear nuevo cliente -->
+				</div>
+			</td>
+			<td>
+				<div class="panellista">
+		<!-- Lista de clientes existentes -->
+				</div>
+			</td>
+			<td>
+				<div class="paneldetalles">
+					<div class="id"></div>
+					<div class="nombre"></div>
+					<div class="email"></div>
+					<div class="telefono"></div>
+					<div class="descripcion"></div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
 </body>
 </html>
