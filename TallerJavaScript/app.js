@@ -40,27 +40,26 @@ console.log(listacompleta);
 function addClient(clientToAdd){
 	var prub = new RegExp("^[0-9]*$");
 	if(prub.test(clientToAdd.id)==false){
-			alert("El id debe ser numerico");
+			
 			throw new Error("El id debe ser numerico");
 			
 	}
 
 	if(clientToAdd.nombre==""){
-		alert("El Nombre es Requerido");
 		throw new Error("El Nombre es Requerido");
 		
 	}
 
 	var prub1= new RegExp("^[a-z0-9]*[@][a-z0-9]*[.][c][o][m]")
 	if(prub1.test(clientToAdd.email)==false){
-		alert("Email Invalido: Use formato --------@------.com");
+		
 		throw new Error("Email Invalido: Use formato --------@------.com");
 		
 	}
 
 	var prub2= new RegExp("^[0-9]\{9\}$")
 	if(prub2.test(clientToAdd.telefono)==false){
-		alert("Numero Telefonico invalido: Debe ser de 9 digitos");
+		
 		throw new Error("Numero Telefonico invalido: Debe ser de 9 digitos")
 		
 	}
@@ -68,7 +67,7 @@ function addClient(clientToAdd){
 	
 	listaClientes.push(clientToAdd);
 	//console.log(clientes);
-	mostrarClientes(listaClientes);
+	
 }
 
 
@@ -86,12 +85,20 @@ function  printClients(clientes){
 }
 function mostrarClientes(listaClientes){
         var padre= $(".panellista");
+        padre.html("");
         for (var i = 0; i < listaClientes.length; i++) {
         	var cliente=$("<div>");
         	jQuery.data(cliente[0], "idCliente", listaClientes[i].id);
         	//console.log(listaClientes[i].id);
+
            	var correo=$("<div>");
            	var nombre=$("<div>");
+           	if(i%2==0){
+           		cliente.css("backgroundColor","#cccccc");
+           	}else{
+           		cliente.css("backgroundColor","#CEECF5");
+           	}
+           	
           	nombre.text(listaClientes[i].nombre);
           	correo.text(listaClientes[i].email);
           	cliente.addClass("itemCliente");
@@ -112,6 +119,10 @@ function configurarEventos(){
            		console.log("Click en id: "+idCliente);
            		mostrarDetalles(idCliente, listaClientes);
            	});
+	$("input:text").change(function(){
+		$(".mensajeError").hide();
+		
+	})
 
 }
 function mostrarDetalles(idCliente, lista){
@@ -140,14 +151,21 @@ function capturarDatos(clientToAdd){
 		var email= document.getElementById("campo3").value;
 		var telefono= document.getElementById("campo4").value;
 		var descripcion= document.getElementById("campo5").value;
-		alert(id+"    "+nombre+"   "+email+"   "+telefono+"   "+descripcion);
+		//alert(id+"    "+nombre+"   "+email+"   "+telefono+"   "+descripcion);
 		clientToAdd.id=id;
 		clientToAdd.nombre=nombre;
 		clientToAdd.email=email;
 		clientToAdd.telefono=telefono;
 		clientToAdd.descripcion=descripcion;
-		addClient(clientToAdd);
+		try{
+			addClient(clientToAdd);
+		}catch(e){
+			$(".mensajeError").text(e).show();
+
+		}
 		
+		mostrarClientes(listaClientes);
+		configurarEventos();
 		//console.log(listaClientes);
 
 	});
