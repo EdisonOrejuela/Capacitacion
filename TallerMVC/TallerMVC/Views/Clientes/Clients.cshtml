@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Clients";
+}
+
+<h2>Clients</h2>
+<script src="/Content/jquery-1.9.1.js"></script>
+<script src="/Content/app.js"></script>
+<div class="container">
+		<div class="row">
+			<div class="span4">
+				<h3>Crear Clientes<i class="icon-plus"></i></h3>
+				<div class="panelcreacion">
+					<form>
+						<div>
+							<label>Id: </label>
+							<input type="text" id="campo1" name="id"/>
+						</div>
+						<div>
+							<label>Nombre:</label> 
+							<input type="text" id="campo2" name="nombre"/>
+						</div>
+						<div>
+							<label>Email:</label> 
+							<input type="text" id="campo3" name="email"/>
+						</div>
+						<div>
+							<label>Telefono:</label> 
+							<input type="text" id="campo4" name="telefono"/>
+						</div>
+						<div>
+							<label>Descrpcion:</label> 
+							<input type="text" id="campo5" name="descrpcion"/>
+						</div>
+						<div>
+							<button class="btn" type="Button" id="boton1" name="Agregar"><i class="icon-search"></i>Agregar
+							</button>
+						</div>
+						<div class="mensajeError">
+						</div>
+					</form>
+									<!-- Captura de datos para crear nuevo cliente -->
+				</div>
+			</div>
+			<div class="span4">
+				<h3>Lista de Clientes</h3>
+				<div class="panellista">
+					<!-- Lista de clientes existentes -->
+				</div>
+
+			</div>
+			<div class="span4">
+				<h3>Detalles del Cliente</h3>
+				<div class="paneldetalles">
+					<div class="id"></div>
+					<div class="nombre"></div>
+					<div class="email"></div>
+					<div class="telefono"></div>
+					<div class="descripcion"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
