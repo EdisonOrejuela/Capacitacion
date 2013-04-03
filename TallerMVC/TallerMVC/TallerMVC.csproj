@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="DataAccess\FakeClientsProvider.cs" />
+    <Compile Include="DataAccess\IClientsProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

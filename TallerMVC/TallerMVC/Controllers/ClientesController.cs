@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TallerMVC.DataAccess;
 using TallerMVC.Models;
 
 namespace TallerMVC.Controllers
@@ -11,6 +12,7 @@ namespace TallerMVC.Controllers
     {
         //
         // GET: /Clientes/
+        IClientsProvider provider = new FakeClientsProvider();
 
         public ActionResult Clients()
         {
@@ -19,20 +21,13 @@ namespace TallerMVC.Controllers
 
         public JsonResult GetClients() 
         {
-            
-            List<Cliente> lista= new List<Cliente>();
-
-            for (int i = 0; i < 200; i++) {
-                Cliente cliente;
-                 cliente = new Cliente{ id = ""+i, nombre = "cliente"+i, email = "cliente"+i+"@cliente.com", telefono = "54548874", descripcion = "ninguna" };
-                lista.Add(cliente);
-            }
-            
-            return Json(lista, JsonRequestBehavior.AllowGet);
+            var lista= provider.GetClients();
+             return Json(lista, JsonRequestBehavior.AllowGet);
             
         }
 
         public ActionResult AddClient() {
+
             return new EmptyResult();
         }
 
