@@ -12,14 +12,14 @@ namespace TallerMVC.DataAccess
 
         public List<Models.Cliente> GetClients()
         {
-            if (clientes.Count == 0) {
+            /*if (clientes.Count == 0) {
                 for (int i = 0; i < 200; i++)
                 {
                     Cliente cliente;
-                    cliente = new Cliente { id = "" + i, nombre = "cliente" + i, email = "cliente" + i + "@cliente.com", telefono = "54548874", descripcion = "ninguna" };
+                 cliente = new Cliente { id = "" + i, nombre = "cliente" + i, email = "cliente" + i + "@cliente.com", telefono = "54548874", descripcion = "ninguna" };
                     clientes.Add(cliente);
                 }
-            }
+            }*/
 
             return clientes;
         }
@@ -29,7 +29,7 @@ namespace TallerMVC.DataAccess
             throw new NotImplementedException();
         }
 
-        public void RemoveClient(int IdClient)
+        public void RemoveClient(string IdClient)
         {
             throw new NotImplementedException();
         }

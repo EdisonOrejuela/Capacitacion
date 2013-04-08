@@ -11,7 +11,7 @@ namespace TallerMVC.DataAccess
     {
          List<Cliente> GetClients();
          void AddClient(Cliente cliente);
-         void RemoveClient(int IdClient);
+         void RemoveClient(string IdClient);
           
 
   

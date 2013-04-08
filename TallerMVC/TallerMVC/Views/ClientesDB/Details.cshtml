@@ -1,0 +1,43 @@
+﻿@model TallerMVC.Models.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cliente</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.telefono)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.telefono)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

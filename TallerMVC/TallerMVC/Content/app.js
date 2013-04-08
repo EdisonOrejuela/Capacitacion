@@ -26,6 +26,7 @@ function callbackPrueba(lista) {
 
 function callbackPrueba2(items) {
     console.log("Tamaño: " + items.length);
+
 }
 
 function callbackPrueba3(listacompleta) {
@@ -87,26 +88,38 @@ function mostrarClientes(listaClientes) {
         var cliente = $("<div>");
         jQuery.data(cliente[0], "idCliente", listaClientes[i].id);
         //console.log(listaClientes[i].id);
-
         var correo = $("<div>");
         var nombre = $("<div>");
-        if (i % 2 == 0) {
-            cliente.css("backgroundColor", "#cccccc");
-        } else {
-            cliente.css("backgroundColor", "#CEECF5");
-        }
-
+        var icono = $("<i>");
+        jQuery.data(icono[0], "idCliente", listaClientes[i].id);
+       // jQuery.data(icono[0], "idCliente", listaIconos[i].id);
+        
         nombre.text(listaClientes[i].nombre);
         correo.text(listaClientes[i].email);
         cliente.addClass("itemCliente");
+        icono.addClass("icon-remove");
+        nombre.append(icono);
         padre.append(cliente);
         cliente.append(nombre);
         cliente.append(correo);
 
 
 
-    };
+    }
+    configurarEventos();
+    decorar(".panellista");
+}
 
+function decorar(selector) {
+    var lista = $(selector).children();
+    for (var i = 0; i < lista.length; i++) {
+        if (i % 2 == 0) {
+            $(lista[i]).css("backgroundColor", "#cccccc");
+        } else {
+            $(lista[i]).css("backgroundColor", "#CEECF5");
+        }
+
+    }
 
 }
 function configurarEventos() {
@@ -120,9 +133,35 @@ function configurarEventos() {
         $(".mensajeError").hide();
 
     })
+    $(".icon-remove").click(function () {
+        var idCliente = jQuery.data(this, "idCliente");
+        if (confirm("Va a eliminar el Cliente: " + idCliente)){
+            eliminarCliente(idCliente)
+            $(this).closest(".itemCliente").slideUp(function () {
+                $(this).closest(".itemCliente").remove();
+                decorar(".panellista");
+                });
+            $(".paneldetalles").slideUp();
+            
+        }
+        return false;
+        
+    });
+
+    function eliminarCliente(idCliente) {
+
+        var url = "/Clientes/RemoveClient";
+        $.post(url, {id:idCliente}, function (data){
+            console.log("Datos Listos");
+        }
+
+    )};
+
+    
 
 }
 function mostrarDetalles(idCliente, lista) {
+    $(".paneldetalles").slideDown();
     var detalles = $(".paneldetalles");
     var id = $(".id");
     var nombre = $(".nombre");
@@ -140,9 +179,10 @@ function mostrarDetalles(idCliente, lista) {
 
     }
 }
-function capturarDatos(clientToAdd) {
-
+function configurarBotonAgregar() {
+    var url = "/Clientes/AddClient";
     $("#boton1").click(function () {
+        var clientToAdd = new Object();
         var id = document.getElementById("campo1").value;
         var nombre = document.getElementById("campo2").value;
         var email = document.getElementById("campo3").value;
@@ -156,13 +196,15 @@ function capturarDatos(clientToAdd) {
         clientToAdd.descripcion = descripcion;
         try {
             addClient(clientToAdd);
+            $.post(url, clientToAdd, function (data) {
+                console.log("Datos Cargados");
+            });
         } catch (e) {
             $(".mensajeError").text(e).show();
 
         }
 
         mostrarClientes(listaClientes);
-        configurarEventos();
         //console.log(listaClientes);
 
     });
@@ -172,12 +214,11 @@ $(document).ready(function () {
     console.log("Cargando...");
     loadclientes(function (lista) {
         listaClientes = lista;
-        var clientToAdd = new Object();
         printClients(lista);
         mostrarClientes(lista);
-        configurarEventos();
-        capturarDatos(clientToAdd);
-        //mostrarDetalles(1, lista);
+        configurarBotonAgregar();
+
+       //mostrarDetalles(1, lista);
         console.log("Finalizado");
     });
     // loadclientes(lista,

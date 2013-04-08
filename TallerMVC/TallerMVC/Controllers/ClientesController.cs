@@ -12,7 +12,7 @@ namespace TallerMVC.Controllers
     {
         //
         // GET: /Clientes/
-        IClientsProvider provider = new FakeClientsProvider();
+        IClientsProvider provider = new SQLClientProvider();
 
         public ActionResult Clients()
         {
@@ -26,14 +26,26 @@ namespace TallerMVC.Controllers
             
         }
 
-        public ActionResult AddClient() {
+        public ActionResult AddClient(string id, string nombre, string email, string telefono, string descripcion) {
+            Cliente cliente = new Cliente();
+            cliente.id = id;
+            cliente.nombre = nombre;
+            cliente.email = email;
+            cliente.telefono = telefono;
+            cliente.descripcion = descripcion;
+            provider.AddClient(cliente);
+            
 
             return new EmptyResult();
         }
 
-        public ActionResult RemoveClient() {
-            return View();
-        }
+        public ActionResult RemoveClient(string id) {
+            provider.RemoveClient(id);
 
+            return new EmptyResult();
+        }
+       
+        
+           
     }
 }

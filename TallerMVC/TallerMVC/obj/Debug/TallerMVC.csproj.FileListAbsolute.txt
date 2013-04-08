@@ -33,3 +33,5 @@ C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\bin\es\System.Web.WebP
 C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\obj\Debug\TallerMVC.dll
 C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\obj\Debug\TallerMVC.pdb
+C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\bin\EntityFramework.dll
+C:\Users\edison.orejuela\Capacitacion\TallerMVC\TallerMVC\bin\EntityFramework.xml

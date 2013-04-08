@@ -1,0 +1,7 @@
+.panellista{
+	height: 400px;
+	overflow: scroll;
+}
+.itemCliente{
+	border-bottom: 1px solid blue;
+}
