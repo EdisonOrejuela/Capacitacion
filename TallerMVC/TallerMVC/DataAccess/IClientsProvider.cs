@@ -12,6 +12,7 @@ namespace TallerMVC.DataAccess
          List<Cliente> GetClients();
          void AddClient(Cliente cliente);
          void RemoveClient(string IdClient);
+         void UpdateClient(Cliente clientToUpdate);
           
 
   

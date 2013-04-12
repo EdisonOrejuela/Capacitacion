@@ -33,5 +33,9 @@ namespace TallerMVC.DataAccess
         {
             throw new NotImplementedException();
         }
+        public void UpdateClient(Cliente clientToUpdate)
+        {
+
+        }
     }
 }

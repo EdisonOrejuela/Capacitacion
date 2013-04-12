@@ -12,6 +12,7 @@ namespace TallerMVC.Models
         public string email { get; set; }
         public string telefono { get; set; }
         public string descripcion { get; set; }
+        public string ciudad { get; set; }
 
     }
 }

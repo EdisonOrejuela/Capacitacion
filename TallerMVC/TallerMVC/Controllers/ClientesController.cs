@@ -21,12 +21,14 @@ namespace TallerMVC.Controllers
 
         public JsonResult GetClients() 
         {
+            var prueba = new { id = "45", nombre = "cliente23", email = "cliente@cliente.com", telefono = "123456789", descripcion = "ninguna" };
             var lista= provider.GetClients();
              return Json(lista, JsonRequestBehavior.AllowGet);
             
         }
 
         public ActionResult AddClient(string id, string nombre, string email, string telefono, string descripcion) {
+            var prueba = new Cliente{ id = "45", nombre = "cliente23", email = "cliente@cliente.com", telefono = "123456789", descripcion = "ninguna" };
             Cliente cliente = new Cliente();
             cliente.id = id;
             cliente.nombre = nombre;
@@ -43,6 +45,43 @@ namespace TallerMVC.Controllers
             provider.RemoveClient(id);
 
             return new EmptyResult();
+        }
+       
+        public ActionResult UpdateClient(Cliente clientToUpdate) {
+            provider.UpdateClient(clientToUpdate);
+
+            return new EmptyResult();
+        }
+        public JsonResult Diccionario() {
+            Dictionary<string, List<Cliente>> dicc = new Dictionary<string, List<Cliente>>();
+         //   dicc.Add("bogota", new Cliente{id="35",nombre="cliente4", ciudad="bogota"});
+        //    dicc.Add("cali", new Cliente { id = "36", nombre = "cliente5", ciudad="cali" });
+            List<Cliente> lista = new List<Cliente>();
+            for (int i = 0; i < 100; i++)
+            {
+                lista.Add(new Cliente { id = "" + i, nombre = "cliente" + i ,ciudad=i%2==0?"bogota":"cali"});
+                
+            }
+            foreach (var item in lista)
+            {
+                if (dicc.ContainsKey(item.ciudad))
+                {
+                    var clientesCiudad = dicc[item.ciudad];
+                    clientesCiudad.Add(item);
+
+                }
+                else
+                { 
+                   var listaClienteCiudad= new List<Cliente>();
+                   listaClienteCiudad.Add(item);
+                   dicc.Add(item.ciudad, listaClienteCiudad);
+                }
+                
+            }
+            var clientesbogota = dicc["bogota"];
+
+            return Json(clientesbogota, JsonRequestBehavior.AllowGet);
+        
         }
        
         

@@ -36,7 +36,7 @@ namespace TallerMVC.DataAccess
                 {
                     Debug.WriteLine(item.id + " " + item.nombre + " " + item.email + " " + item.telefono + " " + item.descripcion);
                 }
-
+                
             }
 
           
@@ -55,7 +55,25 @@ namespace TallerMVC.DataAccess
             
         }
 
-      
+        public void UpdateClient(Cliente clientToUpdate)
+        {
+            using (var db = new ClienteContext()) {
+
+             var actualizar = (from c in db.Clientes where c.id == clientToUpdate.id select c).Single();
+                actualizar.nombre = clientToUpdate.nombre;
+                actualizar.email = clientToUpdate.email;
+                actualizar.telefono = clientToUpdate.telefono;
+                actualizar.descripcion = clientToUpdate.descripcion;
+                db.SaveChanges();
+                Debug.WriteLine(actualizar.id+"   "+actualizar.nombre+"   "+actualizar.email+"   "+actualizar.telefono+"  "+actualizar.descripcion);
+            }
+           
+           
+           
+        
+        }
+
+   
         
      
     }
