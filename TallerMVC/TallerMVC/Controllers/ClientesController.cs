@@ -59,7 +59,7 @@ namespace TallerMVC.Controllers
             List<Cliente> lista = new List<Cliente>();
             for (int i = 0; i < 100; i++)
             {
-                lista.Add(new Cliente { id = "" + i, nombre = "cliente" + i ,ciudad=i%2==0?"bogota":"cali"});
+                lista.Add(new Cliente { id = "" + i, nombre = "cliente" ,ciudad=i%2==0?"bogota":"cali"});
                 
             }
             foreach (var item in lista)
